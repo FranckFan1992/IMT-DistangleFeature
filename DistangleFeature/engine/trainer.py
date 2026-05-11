@@ -447,7 +447,7 @@ class TrainerMultiView:
                 f"recon:{metric_avgs['reconstruction'].item():.4f}"
             )
 
-            if (iter_idx + 1) % 5000 == 0 and self.cpkt_save_path is not None:
+            if ((iter_idx + 1) % 5000 == 0 or (iter_idx + 1) == self.num_iters) and self.cpkt_save_path is not None:
                 torch.save(self.kpnet.state_dict(), f"{self.cpkt_save_path}/kpnet_iter_{iter_idx}.pth")
 
             self.progress_bar.update(1)

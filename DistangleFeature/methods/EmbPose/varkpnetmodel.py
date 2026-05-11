@@ -34,6 +34,15 @@ class SharedBackbone_XFeat(nn.Module):
         return feat
 
 
+def build_shared_backbone(backbone_name, out_dim=128, freeze=True, **kwargs):
+    """
+    Build shared backbone based on name.
+    Currently supports: 'xfeat'
+    """
+    if backbone_name == 'xfeat':
+        return SharedBackbone_XFeat(out_dim=out_dim, freeze=freeze)
+    else:
+        raise ValueError(f"Unsupported backbone_name: {backbone_name}. Supported: 'xfeat'")
 
 
 # -------------------------

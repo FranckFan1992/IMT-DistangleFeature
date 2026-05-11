@@ -12,6 +12,20 @@ from modules.megadepth.megadepth import MegaDepthDataset
 from methods.EmbPose.varkpnetmodel import VUDNet, SharedBackbone_XFeat
 
 
+"""
+python -m engine.adapter_trainer \
+  --data_path datasets/MegaDepth_v1 \
+  --npz_path datasets/scene_info_0.1_0.7/0022_0.1_0.3.npz \
+  --teacher_ckpt checkpoints/kpnet_iter_xfeat_45000.pth \
+  --student_backbone r2d2 \
+  --student_pretrained \
+  --batch_size 8 \
+  --epochs 10 \
+  --save_dir checkpoints/adapter
+
+"""
+
+
 class FeatureAdapter(nn.Module):
     def __init__(self, in_dim=128, out_dim=128):
         super().__init__()
